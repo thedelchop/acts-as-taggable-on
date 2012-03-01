@@ -1,8 +1,7 @@
-require File.expand_path('../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe "Taggable" do
   before(:each) do
-    clean_database!
     @taggable = TaggableModel.new(:name => "Bob Jones")
     @taggables = [@taggable, TaggableModel.new(:name => "John Doe")]
   end
@@ -302,11 +301,11 @@ describe "Taggable" do
     end
 
     it "should return all column names joined for TaggableModel GROUP clause" do
-      @taggable.grouped_column_names_for(TaggableModel).should == "taggable_models.id, taggable_models.name, taggable_models.type"
+      @taggable.grouped_column_names_for(TaggableModel).should == "taggable_models.id, taggable_models.name, taggable_models.type, taggable_models.created_at, taggable_models.updated_at"
     end
 
     it "should return all column names joined for NonStandardIdTaggableModel GROUP clause" do
-      @taggable.grouped_column_names_for(TaggableModel).should == "taggable_models.#{TaggableModel.primary_key}, taggable_models.name, taggable_models.type"
+      @taggable.grouped_column_names_for(TaggableModel).should == "taggable_models.#{TaggableModel.primary_key}, taggable_models.name, taggable_models.type, taggable_models.created_at, taggable_models.updated_at"
     end
   end
 
@@ -360,7 +359,6 @@ describe "Taggable" do
 
   describe "NonStandardIdTaggable" do
     before(:each) do
-      clean_database!
       @taggable = NonStandardIdTaggableModel.new(:name => "Bob Jones")
       @taggables = [@taggable, NonStandardIdTaggableModel.new(:name => "John Doe")]
     end

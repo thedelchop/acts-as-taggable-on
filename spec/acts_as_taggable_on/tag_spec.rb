@@ -1,8 +1,7 @@
-require File.expand_path('../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe ActsAsTaggableOn::Tag do
   before(:each) do
-    clean_database!
     @tag = ActsAsTaggableOn::Tag.new
     @user = TaggableModel.create(:name => "Pablo")
   end
@@ -115,12 +114,12 @@ describe ActsAsTaggableOn::Tag do
     end
 
     it "return escaped result when '%' char present in tag" do
-        ActsAsTaggableOn::Tag.named_like('coo%').should_not include(@tag)
-        ActsAsTaggableOn::Tag.named_like('coo%').should include(@another_tag)
+      ActsAsTaggableOn::Tag.named_like('coo%').should_not include(@tag)
+      ActsAsTaggableOn::Tag.named_like('coo%').should include(@another_tag)
     end
 
   end
-  
+
   describe ".remove_unused" do
     before do
       @taggable = TaggableModel.create(:name => "Bob Jones")
@@ -128,23 +127,23 @@ describe ActsAsTaggableOn::Tag do
 
       @tagging = ActsAsTaggableOn::Tagging.create(:taggable => @taggable, :tag => @tag, :context => 'tags')
     end
-    
+
     context "if set to true" do
       before do
         ActsAsTaggableOn::Tag.remove_unused = true                  
       end
-      
+
       it "should remove unused tags after removing taggings" do
         @tagging.destroy
         ActsAsTaggableOn::Tag.find_by_name("awesome").should be_nil
       end
     end
-    
+
     context "if set to false" do
       before do
         ActsAsTaggableOn::Tag.remove_unused = false        
       end
-      
+
       it "should not remove unused tags after removing taggings" do
         @tagging.destroy
         ActsAsTaggableOn::Tag.find_by_name("awesome").should == @tag

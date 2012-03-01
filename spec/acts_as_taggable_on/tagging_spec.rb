@@ -1,8 +1,7 @@
-require File.expand_path('../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe ActsAsTaggableOn::Tagging do
   before(:each) do
-    clean_database!
     @tagging = ActsAsTaggableOn::Tagging.new
   end
 
@@ -12,7 +11,7 @@ describe ActsAsTaggableOn::Tagging do
     @tagging.context = "tags"
 
     @tagging.should_not be_valid
-    
+
     @tagging.errors[:tag_id].should == ["can't be blank"]
   end
 
@@ -24,5 +23,4 @@ describe ActsAsTaggableOn::Tagging do
       2.times { ActsAsTaggableOn::Tagging.create(:taggable => @taggable, :tag => @tag, :context => 'tags') }
     }.should change(ActsAsTaggableOn::Tagging, :count).by(1)
   end
-  
 end

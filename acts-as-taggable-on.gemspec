@@ -1,5 +1,5 @@
 $:.push File.dirname(__FILE__) + '/lib'
-require 'acts-as-taggable-on/version'
+require 'acts_as_taggable_on/version'
 
 Gem::Specification.new do |gem|
   gem.name = %q{acts-as-taggable-on}
