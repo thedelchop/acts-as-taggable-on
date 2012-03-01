@@ -1,8 +1,6 @@
 module ActsAsTaggableOn
   class Engine < Rails::Engine
 
-    isolate_namespace ActsAsTaggableOn
-
     initializer 'ActsAsTaggableOn ActiveRecord' do |app|
       ActiveRecord::Base.extend ActsAsTaggableOn::Taggable
       ActiveRecord::Base.send :include, ActsAsTaggableOn::Tagger
