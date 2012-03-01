@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ''
 
   gem.add_runtime_dependency 'rails', '~> 3.1'
-  gem.add_development_dependency 'rspec', '~> 2.5'
+  gem.add_development_dependency 'rspec-rails', '~> 2.5'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'mysql2', '~> 0.3.7'
   gem.add_development_dependency 'pg'
