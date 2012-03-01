@@ -6,10 +6,10 @@ module ActsAsTaggableOn
       ActiveRecord::Base.send :include, ActsAsTaggableOn::Tagger
     end
 
-    initializer 'ActsAsTaggableOn AcrtionView' do |app|
-      ActiveSupport.on_load(:action_view) do
-        include ActsAsTaggableOn::TagsHelper
-      end
-    end
+    #initializer 'ActsAsTaggableOn AcrtionView' do |app|
+      #ActiveSupport.on_load(:action_view) do
+        #include ActsAsTaggableOn::TagsHelper
+      #end
+    #end
   end
 end
